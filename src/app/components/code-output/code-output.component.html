@@ -1,0 +1,34 @@
+<div class="code-output">
+  <div class="output-header" *ngIf="result">
+    <h4></h4>
+    
+    <div >
+      <button pButton 
+              icon="pi pi-copy" 
+              label={{label.copiar}}
+              (click)="copyToClipboard()">
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="!result" class="empty-state">
+    <i class="pi pi-inbox"></i>
+    <p>{{message.mensajeInstrucciones}}</p>
+  </div>
+
+  <div *ngIf="result">
+    <pre><code #codeElement class="language-java">{{ result.organizedCode }}</code></pre>
+    
+    <div class="stats" *ngIf="result.stats">
+      <div class="stat-item">
+        <span>{{label.tiempo}}: {{ getProcessingTime() }}ms</span>
+      </div>
+      <div class="stat-item">
+        <span>{{label.lineas}}: {{ getLineCount() }}</span>
+      </div>
+      <div class="stat-item" *ngIf="getLinesReduced() > 0">
+        <span>{{label.reduccion}}: {{ getLinesReduced() }} {{label.lineas}}</span>
+      </div>
+    </div>
+  </div>
+</div>
