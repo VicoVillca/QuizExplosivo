@@ -10,7 +10,7 @@ export const labels = {
   step3Title: "¡Peligro!",
   step3Desc: "Si explota, bebes y vuelves a intentar",
     titulo: "💣 Quiz Explosivo",
-    footer:"© Quiz Explosivo - Desarrollado con Angular & PrimeNG",
+    footer:"© Quiz Explosivo",
     loadingQuestion: "Cargando pregunta...",
   retry: "Reintentar",
   retryGame: "VOLVER A INTENTAR",

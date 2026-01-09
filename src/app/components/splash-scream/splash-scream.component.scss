@@ -1,4 +1,4 @@
-// splash-scream.component.scss
+// splash-screen.component.scss
 .splash-container {
   position: fixed;
   top: 0;
@@ -9,7 +9,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 9999; // MAYOR prioridad que el footer (1000)
   overflow: hidden;
   
   // Overlay para mejorar legibilidad
@@ -214,5 +214,20 @@
         }
       }
     }
+  }
+}
+
+// Asegurar que el footer no se muestre durante el splash
+:host ::ng-deep {
+  .main-footer {
+    display: none !important;
+  }
+  
+  .main-toolbar {
+    display: none !important;
+  }
+  
+  .main-content {
+    display: none !important;
   }
 }
