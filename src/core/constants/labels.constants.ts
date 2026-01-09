@@ -6,8 +6,7 @@ export const labels = {
     tiempo: "Tiempo",
     lineas: "Líneas:",
     reduccion: "Reducción",
-    codigoJava: "📝 Código Java",
-    titulo: "🔧 CodeOrganizer",
-    subTitulo: "Organiza tu código Java usando Expreciones regulares",
-    footer:"© CodeOrganizer - Desarrollado con Angular & PrimeNG"
+    codigoJava: "💣 Código Java",
+    titulo: "💣 Quiz Explosivo",
+    footer:"© Quiz Explosivo - Desarrollado con Angular & PrimeNG"
 };

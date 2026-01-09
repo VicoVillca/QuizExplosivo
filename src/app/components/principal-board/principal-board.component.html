@@ -1,0 +1,45 @@
+<!-- principal-board.component.html -->
+<div class="principal-container p-grid p-nogutter p-justify-center">
+
+
+  <!-- Contenido Principal -->
+  <div class="p-col-12 md:p-col-8 lg:p-col-6">
+    <div class="main-card p-shadow-8 p-p-4">
+      
+      <!-- Instrucciones -->
+      <div class="instructions-section p-mb-5">
+        <h3 class="section-title">
+          ¿Cómo Jugar?
+        </h3>
+        
+        <div class="instructions-list">
+          <div class="instruction-item p-d-flex p-ai-center p-mb-3">
+            <div class="step-icon p-mr-3">1</div>
+            Responde preguntas antes de que el tiempo se acabe
+          </div>
+          
+          <div class="instruction-item p-d-flex p-ai-center p-mb-3">
+            <div class="step-icon p-mr-3">2</div>
+            <p>Si aciertas, pasas la bomba al siguiente jugador</p>
+          </div>
+          
+          <div class="instruction-item p-d-flex p-ai-center">
+            <div class="step-icon p-mr-3">💥</div>
+            <p>¡Si la bomba explota, bebes y vuelves a intentar</p>
+          </div>
+        </div>
+      </div>
+      <!-- Botón Principal -->
+      <div class="action-section p-text-center">
+        <button 
+          pButton 
+          label="INICIAR JUEGO"
+          class="start-button p-button-lg p-button-raised"
+          (click)="onStartGame()">
+        </button>
+        
+      </div>
+
+    </div>
+  </div>
+</div>
