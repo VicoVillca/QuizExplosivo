@@ -1,4 +1,35 @@
-<h1>game-board</h1>
-<button class="start-btn" (click)="onEndGame()">
-          🎯 perderJuego
-        </button>
+<div class="game-container">
+
+  <div *ngIf="loadingQuestion" class="loading-state">
+    <p-progressSpinner></p-progressSpinner>
+    <p>{{labels.loadingQuestion}}</p>
+  </div>
+
+  <div *ngIf="errorMessage && !loadingQuestion" class="error-state">
+    <p>{{ errorMessage }}</p>
+    <button pButton [label]="labels.retry" (click)="loadNewQuestion()"></button>
+  </div>
+
+  <div *ngIf="currentQuestion && !loadingQuestion" class="question-section">
+    
+    <h2 class="question-text">{{ currentQuestion.question }}</h2>
+
+    <div class="options-container">
+      <button 
+        *ngFor="let option of currentQuestion.options; let i = index"
+        class="option-button"
+        [ngClass]="{
+          'selected': selectedAnswerIndex === i,
+          'correct': answered && i === currentQuestion.correctAnswerIndex,
+          'incorrect': answered && selectedAnswerIndex === i && i !== currentQuestion.correctAnswerIndex
+        }"
+        (click)="selectAnswer(i)"
+        [disabled]="answered">
+        <span class="option-letter">{{ getOptionLetter(i) }}</span>
+        <span class="option-text">{{ option }}</span>
+      </button>
+    </div>
+
+  </div>
+
+</div>

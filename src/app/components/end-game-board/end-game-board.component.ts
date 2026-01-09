@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { GameStateService } from '../../../core/services/game-state.service';
+import { labels } from '../../../core/constants/labels.constants';
+import { messages } from '../../../core/constants/messages.constants';
 
 @Component({
   selector: 'app-end-game-board',
@@ -12,13 +14,13 @@ import { GameStateService } from '../../../core/services/game-state.service';
   styleUrls: ['./end-game-board.component.scss']
 })
 export class EndBoardComponent {
+
+  labels = labels;
+  messages = messages;
+  
   constructor(private gameStateService: GameStateService) { }
 
-  onStartGame(): void {
-    console.log('🎮 Iniciando juego desde PrincipalBoard...');
-
+  onRestartGame(): void {
     this.gameStateService.startGame();
-    
-    console.log('✅ Estado cambiado a: game');
   }
 }

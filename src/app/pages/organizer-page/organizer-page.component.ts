@@ -9,8 +9,11 @@ import { SplashScreamComponent } from "../../components/splash-scream/splash-scr
 import { EndBoardComponent } from "../../components/end-game-board/end-game-board.component";
 import { GameBoardComponent } from "../../components/game-board/game-board.component";
 import { PrincipalBoardComponent } from "../../components/principal-board/principal-board.component";
-import { GameState, GameStateService } from "../../../core/services/game-state.service";
-import { Subscription } from 'rxjs';
+import {
+  GameState,
+  GameStateService,
+} from "../../../core/services/game-state.service";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: "app-organizer-page",
@@ -29,31 +32,35 @@ import { Subscription } from 'rxjs';
   styleUrls: ["./organizer-page.component.scss"],
 })
 export class OrganizerPageComponent implements OnInit, OnDestroy {
-  currentState: GameState = 'splash';
+  label = labels;
+  message = messages;
+
+  currentState: GameState = "splash";
   private stateSubscription!: Subscription;
-  
+
   constructor(private gameStateService: GameStateService) {}
-  
+
   ngOnInit() {
-    this.stateSubscription = this.gameStateService.currentState$
-      .subscribe(state => {
+    this.stateSubscription = this.gameStateService.currentState$.subscribe(
+      (state) => {
         console.log(state);
         this.currentState = state;
-      });
+      }
+    );
   }
-  
+
   onStartGame() {
     this.gameStateService.startGame();
   }
-  
+
   onGameOver() {
     this.gameStateService.endGame();
   }
-  
+
   onRestart() {
     this.gameStateService.restartGame();
   }
-  
+
   ngOnDestroy() {
     if (this.stateSubscription) {
       this.stateSubscription.unsubscribe();

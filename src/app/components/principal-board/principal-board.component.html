@@ -1,45 +1,64 @@
-<!-- principal-board.component.html -->
-<div class="principal-container p-grid p-nogutter p-justify-center">
-
-
-  <!-- Contenido Principal -->
-  <div class="p-col-12 md:p-col-8 lg:p-col-6">
-    <div class="main-card p-shadow-8 p-p-4">
+<div class="principal-container">
+  <div class="main-card">
+    
+    <div class="content-grid">
       
+      <!-- GIF + Botón -->
+      <div class="gif-column">
+        <div class="gif-wrapper">
+          <img
+            src="https://media.tenor.com/3nCpSb6IvrQAAAAi/bomb-light.gif"
+            alt="Bomba explotando"
+            class="bomb-gif"
+          />
+          <div class="gif-label">{{labels.respondFast}}</div>
+          <button 
+            pButton 
+            [label]="labels.startGame"
+            icon="fas fa-play"
+            class="start-button"
+            (click)="onStartGame()">
+          </button>
+        </div>
+      </div>
+
       <!-- Instrucciones -->
-      <div class="instructions-section p-mb-5">
-        <h3 class="section-title">
-          ¿Cómo Jugar?
-        </h3>
-        
-        <div class="instructions-list">
-          <div class="instruction-item p-d-flex p-ai-center p-mb-3">
-            <div class="step-icon p-mr-3">1</div>
-            Responde preguntas antes de que el tiempo se acabe
-          </div>
+      <div class="instructions-column">
+        <div class="instructions-card">
+          <h3 class="instructions-title">
+            <i class="fas fa-graduation-cap"></i>
+            {{labels.howToPlay}}
+          </h3>
           
-          <div class="instruction-item p-d-flex p-ai-center p-mb-3">
-            <div class="step-icon p-mr-3">2</div>
-            <p>Si aciertas, pasas la bomba al siguiente jugador</p>
-          </div>
-          
-          <div class="instruction-item p-d-flex p-ai-center">
-            <div class="step-icon p-mr-3">💥</div>
-            <p>¡Si la bomba explota, bebes y vuelves a intentar</p>
+          <div class="steps-container">
+            <div class="step">
+              <div class="step-number">1</div>
+              <div class="step-content">
+                <strong>{{labels.step1Title}}</strong>
+                <p>{{labels.step1Desc}}</p>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-number">2</div>
+              <div class="step-content">
+                <strong>{{labels.step2Title}}</strong>
+                <p>{{labels.step2Desc}}</p>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-number">💥</div>
+              <div class="step-content">
+                <strong>{{labels.step3Title}}</strong>
+                <p>{{labels.step3Desc}}</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <!-- Botón Principal -->
-      <div class="action-section p-text-center">
-        <button 
-          pButton 
-          label="INICIAR JUEGO"
-          class="start-button p-button-lg p-button-raised"
-          (click)="onStartGame()">
-        </button>
-        
-      </div>
 
     </div>
+
   </div>
 </div>

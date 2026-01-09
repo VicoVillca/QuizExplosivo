@@ -1,4 +1,20 @@
-<h1>ende-game-board</h1>
-<button class="start-btn" (click)="onStartGame()">
-          🎯 Reiniciar JUEGO
-        </button>
+<div class="end-game-container p-d-flex p-jc-center p-ai-center">
+  <div class="end-game-card p-shadow-8 p-p-4 p-text-center">
+
+    <div class="gif-container">
+      <img
+        src="https://media1.tenor.com/m/FaNLwa_MXmYAAAAd/ahui.gif"
+        [alt]="labels.gameOverAlt"
+      />
+    </div>
+
+    <h2 class="title">{{messages.gameOver}}</h2>
+    <button
+      pButton
+      [label]="labels.retryGame"
+      class="retry-button p-button-lg p-button-raised"
+      (click)="onRestartGame()">
+    </button>
+
+  </div>
+</div>

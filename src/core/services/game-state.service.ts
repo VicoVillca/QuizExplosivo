@@ -7,50 +7,103 @@ export type GameState = 'splash' | 'principal' | 'game' | 'end';
   providedIn: 'root'
 })
 export class GameStateService {
+
   private currentState = new BehaviorSubject<GameState>('splash');
   currentState$ = this.currentState.asObservable();
-  
-  // Temporizador para splash screen
+
   private splashTimer: any;
-  
+  private endSoundTimer: any;
+  private currentSound?: HTMLAudioElement;
+
+  private sounds: Record<GameState, HTMLAudioElement> = {
+    splash: new Audio('assets/sounds/splashh.mp3'),
+    principal: new Audio('assets/sounds/menu.mp3'),
+    game: new Audio('assets/sounds/gamee.mp3'),
+    end: new Audio('assets/sounds/lose.mp3')
+  };
+
   constructor() {
-    // Iniciar automáticamente con splash
+    Object.values(this.sounds).forEach(sound => {
+      sound.volume = 0.6;
+      sound.loop = true;
+      sound.load();
+    });
+
     this.startSplashTimer();
   }
-  
+
   startSplashTimer() {
-    this.currentState.next('splash');
-    
-    // Cambiar a principal después de 2.5 segundos
+    this.changeState('splash');
+
     this.splashTimer = setTimeout(() => {
       this.changeState('principal');
-    }, 5000);
+    }, 2000);
   }
-  
+
   changeState(newState: GameState) {
+    if (this.currentState.value === newState) return;
+
     this.currentState.next(newState);
-    
-    // Limpiar timer si existe
+    this.playSoundForState(newState);
+
     if (this.splashTimer) {
       clearTimeout(this.splashTimer);
       this.splashTimer = null;
     }
   }
-  
+
+  private playSoundForState(state: GameState) {
+    if (this.currentSound) {
+      this.currentSound.pause();
+      this.currentSound.currentTime = 0;
+    }
+
+    if (this.endSoundTimer) {
+      clearTimeout(this.endSoundTimer);
+      this.endSoundTimer = null;
+    }
+
+    const sound = this.sounds[state];
+    if (!sound) return;
+
+    sound.currentTime = 0;
+
+    if (state === 'end') {
+      sound.loop = false;
+      sound.play().catch(() => {});
+      this.currentSound = sound;
+
+      this.endSoundTimer = setTimeout(() => {
+        sound.pause();
+        sound.currentTime = 0;
+        this.currentSound = undefined;
+      }, 5000);
+    } else {
+      sound.loop = true;
+      sound.play().catch(() => {});
+      this.currentSound = sound;
+    }
+  }
+
   startGame() {
     this.changeState('game');
   }
-  
+
   endGame() {
     this.changeState('end');
   }
-  
+
   restartGame() {
-    // Podrías ir directo al juego o al principal
     this.changeState('principal');
   }
-  
+
   getCurrentState(): GameState {
     return this.currentState.value;
+  }
+
+  setVolume(volume: number) {
+    Object.values(this.sounds).forEach(sound => {
+      sound.volume = volume;
+    });
   }
 }

@@ -1,7 +1,5 @@
-<!-- app.component.html -->
 <div class="app-container" [class.dark-theme]="themeService.isDarkMode" [class.light-theme]="!themeService.isDarkMode">
   
-  <!-- Toolbar principal -->
   <p-toolbar styleClass="main-toolbar">
     <ng-template #start>
       <div class="toolbar-logo">
@@ -19,12 +17,10 @@
     </ng-template>
   </p-toolbar>
 
-  <!-- Contenido principal -->
   <main class="main-content">
     <app-organizer-page></app-organizer-page>
   </main>
 
-  <!-- Footer -->
   <footer class="main-footer">
     <p>{{label.footer}}</p>
   </footer>
